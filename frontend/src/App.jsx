@@ -39,19 +39,19 @@ const [formData, setFormData] = useState({
 });
 
 useEffect(() => {
-  fetch("http://127.0.0.1:8000/products")
+  fetch("https://ecommerce-admin-dashboard-ydpi.onrender.com")
     .then((response) => response.json())
     .then((data) => setProducts(data))
     .catch((error) => console.error("Error:", error));
 }, []);
 useEffect(() => {
-  fetch("http://127.0.0.1:8000/orders")
+  fetch("https://ecommerce-admin-dashboard-ydpi.onrender.com")
     .then((response) => response.json())
     .then((data) => setOrders(data))
     .catch((error) => console.error("Error:", error));
 }, []);
 useEffect(() => {
-  fetch("http://127.0.0.1:8000/customers")
+  fetch("https://ecommerce-admin-dashboard-ydpi.onrender.com")
     .then((response) => response.json())
     .then((data) => setCustomers(data))
     .catch((error) => console.error("Error:", error));
@@ -60,8 +60,8 @@ const handleAddProduct = (e) => {
   e.preventDefault();
 
   const url = editingId
-    ? `http://127.0.0.1:8000/products/${editingId}`
-    : "http://127.0.0.1:8000/products";
+    ? `https://ecommerce-admin-dashboard-ydpi.onrender.com/products/${editingId}`
+    : "https://ecommerce-admin-dashboard-ydpi.onrender.com/productts";
 
   const method = editingId ? "PUT" : "POST";
 
@@ -96,7 +96,7 @@ const handleAddProduct = (e) => {
       setEditingId(null);
       setShowForm(false);
 
-      fetch("http://127.0.0.1:8000/products")
+      fetch("https://ecommerce-admin-dashboard-ydpi.onrender.com/products")
         .then((response) => response.json())
         .then((data) => setProducts(data));
     })
@@ -120,7 +120,7 @@ const handleEdit = (product) => {
 const updateOrderStatus = async (orderId, newStatus) => {
   try {
     const response = await fetch(
-      `http://127.0.0.1:8000/orders/${orderId}?status=${newStatus}`,
+      `https://ecommerce-admin-dashboard-ydpi.onrender.com/orders/${orderId}?status=${newStatus}`,
       {
         method: "PUT",
       }
@@ -522,7 +522,7 @@ return (
           onClick={() => {
             if (window.confirm(`Delete ${product.name}?`)) {
               fetch(
-                `http://127.0.0.1:8000/products/${product.id}`,
+                `https://ecommerce-admin-dashboard-ydpi.onrender.com/products/${product.id}`,
                 {
                   method: "DELETE",
                 }
@@ -531,7 +531,7 @@ return (
                 .then(() => {
                   alert("Product deleted successfully!");
 
-                  fetch("http://127.0.0.1:8000/products")
+                  fetch("https://ecommerce-admin-dashboard-ydpi.onrender.com/products")
                     .then((response) => response.json())
                     .then((data) => setProducts(data));
                 })
